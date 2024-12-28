@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+</head>
+<body>
+    {% block content %}
+    <div class="title"><h2>Product list</h2></div>
+    <div class="list">
+        {% for product in objects %}
+        <div class="product_card">
+            <h3 class="product-title">{{ product.title }}</h3><br>
+            <p class="product-description">{{ product.description }}<br></p>
+            <p class="product-price">{{ product.price }}<br></p>
+            <a class="buy-button" href="{% url 'product_order' product.pk %}">Купить</a>
+        </div>
+        {% endfor %}
+    {% endblock %}
+    </div>
+</body>
+</html>
