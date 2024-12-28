@@ -1,18 +1,84 @@
 {% extends 'index.html' %}
 
 {% block content %}
-<input type="text">
-<button type="submit">Поиск</button>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+    }
+
+    input[type="text"] {
+        padding: 10px;
+        width: 200px;
+        margin-right: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button {
+        padding: 10px 15px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    li {
+        background: white;
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 4px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    a {
+        text-decoration: none;
+        color: #007bff;
+        margin-right: 10px;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    hr {
+        border: 0;
+        height: 1px;
+        background: #ccc;
+        margin: 10px 0;
+    }
+</style>
+
+<div class="search-container">
+    <form method="get" action="{% url 'book-list' %}">
+        <input type="text" name="title" placeholder="Введите название книги" value="{{ request.GET.title }}">
+        <button type="submit">Поиск</button>
+    </form>
+</div>
 <ul>
     <a href="{% url 'orders' %}">Заказы</a>
-    <a href="{% url 'book-create' %}">добавить</a>
+    <a href="{% url 'book-create' %}">Добавить</a>
     {% for book in books %}
-        <li>{{ book.title }}</li>
-        <li>{{ book.price }}</li>
-        <a href="{% url 'book-detail' book.pk %}">more</a>
-        <a href="{% url 'book-delete' book.pk %}">delete</a>
-        <a href="{% url 'book-update' book.pk %}">Обновить</a>
-        <a href="{% url 'buy' %}">buy</a>
+        <li>
+            <strong>{{ book.title }}</strong><br>
+            Цена: {{ book.price }}<br>
+            <a href="{% url 'book-detail' book.pk %}">Подробнее</a>
+            <a href="{% url 'book-delete' book.pk %}">Удалить</a>
+            <a href="{% url 'book-update' book.pk %}">Обновить</a>
+            <a href="{% url 'buy' %}">Купить</a>
+        </li>
         <hr>
     {% endfor %}
 </ul>
