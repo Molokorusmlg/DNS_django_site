@@ -15,7 +15,7 @@ class BookListView(ListView):
     def get_queryset(self, *args, **kwargs):
         product = self.request.GET.get('title')
         if product:
-            product = Product.objects.filter(object_id=product)
+            product = Product.objects.filter(title=product)
         else:
             product = Product.objects.all()
         return product
