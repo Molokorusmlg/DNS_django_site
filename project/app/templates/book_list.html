@@ -1,0 +1,19 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<input type="text">
+<button type="submit">Поиск</button>
+<ul>
+    <a href="{% url 'orders' %}">Заказы</a>
+    <a href="{% url 'book-create' %}">добавить</a>
+    {% for book in books %}
+        <li>{{ book.title }}</li>
+        <li>{{ book.price }}</li>
+        <a href="{% url 'book-detail' book.pk %}">more</a>
+        <a href="{% url 'book-delete' book.pk %}">delete</a>
+        <a href="{% url 'book-update' book.pk %}">Обновить</a>
+        <a href="{% url 'buy' %}">buy</a>
+        <hr>
+    {% endfor %}
+</ul>
+{% endblock %}
