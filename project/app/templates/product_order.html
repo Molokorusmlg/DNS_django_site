@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order</title>
+</head>
+<body>
+    <div class="order">
+         <p>{{ object.title }}</p>
+         <p>{{ object.description }}</p>
+         <p>{{ object.price }}</p>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Оформить</button>
+        </form>
+    </div>
+</body>
+</html>
