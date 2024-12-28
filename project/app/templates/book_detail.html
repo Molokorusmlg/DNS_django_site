@@ -1,0 +1,8 @@
+{% extends 'index.html' %}
+{% block content %}
+
+    {{ book.title }} -
+    {{ book.author }}
+    <p>Аватарка: {{ smile }}</p>
+    <a href="{% url 'book-list' %}">назад</a>
+{% endblock %}
